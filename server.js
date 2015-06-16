@@ -11,6 +11,10 @@ var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+var multipart = require('connect-multiparty');
+var done = false;
+
+
 
 var configDB = require('./config/database.js');
 
@@ -30,6 +34,7 @@ app.configure(function() {
 
     app.use(express.static(__dirname + '/views'));
 
+    app.use(multipart()) //Express 4
 
     // required for passport
     app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
@@ -38,6 +43,7 @@ app.configure(function() {
     app.use(flash()); // use connect-flash for flash messages stored in session
 
 });
+
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

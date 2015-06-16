@@ -5,10 +5,7 @@ var mongoose = require('mongoose');
 
 var musicSchema = mongoose.Schema({
     title       :   { type : String, index : true },
-    desc        :   String,
-    genre       :   String,
-    url         :   String,
-    img         :   String
+    url         :   String
 });
 
 module.exports = mongoose.model('Music', musicSchema);
